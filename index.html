@@ -1,72 +1,637 @@
-<!DOCTYPE html>                                                             
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CurbCopy — AI Content Tools for Real Estate Agents</title>           
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }                      
-      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',        
-  sans-serif; background: #fafaf9; color: #1c1917; }                            
-      header { background: #fff; border-bottom: 1px solid #e7e5e4; padding: 1rem
-   2rem; }                                                                      
-      header span { font-size: 1.25rem; font-weight: 700; color: #0f172a; }   
-      .hero { max-width: 680px; margin: 5rem auto; padding: 0 2rem; text-align: 
-  center; }                                                                     
-      h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.2; margin-bottom:
-   1.25rem; }                                                                   
-      h1 span { color: #2563eb; }                                             
-      p { font-size: 1.125rem; color: #57534e; line-height: 1.7; margin-bottom: 
-  2rem; }                                                                       
-      .cta { display: inline-block; background: #2563eb; color: #fff; padding:
-  0.875rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none;   
-  font-size: 1rem; }                                                          
-      .cta:hover { background: #1d4ed8; }                                       
-      .features { max-width: 900px; margin: 4rem auto; padding: 0 2rem; display:
-   grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:      
-  1.5rem; }
-      .feature { background: #fff; border: 1px solid #e7e5e4; border-radius:    
-  10px; padding: 1.5rem; }                                                    
-      .feature h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
-      .feature p { font-size: 0.9rem; color: #78716c; margin: 0; }              
-      footer { text-align: center; padding: 3rem; color: #a8a29e; font-size:    
-  0.875rem; }                                                                   
-    </style>                                                                    
-  </head>                                                                       
-  <body>                                                                      
-    <header><span>CurbCopy</span></header>
+<!DOCTYPE html>
+     <html lang="en">
+     <head>
+       <meta charset="UTF-8" />
+       <meta name="viewport" content="width=device-width,
+     initial-scale=1.0" />
+       <title>CurbCopy — AI Copy for Real Estate Agents</title>
+       <meta name="description" content="Stop staring at a blank screen.
+     CurbCopy writes your listing descriptions, social posts, follow-up
+     emails, and open house invites in seconds." />
+       <link rel="preconnect" href="https://fonts.googleapis.com" />
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin 
+     />
+       <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz
+     ,wght@0,14..32,100..900;1,14..32,100..900&display=swap" 
+     rel="stylesheet" />
+       <style>
+         *, *::before, *::after { box-sizing: border-box; margin: 0;
+     padding: 0; }
 
-    <div class="hero">                                                          
-      <h1>AI-powered content for <span>real estate agents</span></h1>
-      <p>Stop staring at a blank screen. CurbCopy writes your listing           
-  descriptions, social posts, follow-up emails, and open house invites — in     
-  seconds.</p>
-      <a href="mailto:hello@curbcopy.co" class="cta">Get Early Access</a>       
-    </div>                                                                      
-   
-    <div class="features">                                                      
-      <div class="feature">                                                   
-        <h3>Listing Descriptions</h3>
-        <p>Compelling MLS copy that sells the lifestyle, not just the square    
-  footage.</p>                                                                  
-      </div>                                                                    
-      <div class="feature">                                                     
-        <h3>Social Posts</h3>                                                 
-        <p>Instagram and Facebook captions ready to post in one click.</p>
-      </div>                                                                    
-      <div class="feature">
-        <h3>Follow-Up Emails</h3>                                               
-        <p>Personalized buyer and seller emails that keep deals moving.</p>   
-      </div>                                                                    
-      <div class="feature">                                                   
-        <h3>Open House Invites</h3>                                             
-        <p>Professional invitations that drive foot traffic to your           
-  listings.</p>                                                                 
-      </div>
-    </div>                                                                      
-                                                                              
-    <footer>
-      &copy; 2026 CurbCopy &mdash; hello@curbcopy.co
-    </footer>                                                                   
-  </body>
-  </html>       
+         :root {
+           --canvas: #090909;
+           --surface-1: #141414;
+           --surface-2: #1c1c1c;
+           --hairline: #262626;
+           --hairline-soft: #1a1a1a;
+           --ink: #ffffff;
+           --ink-muted: #999999;
+           --accent-blue: #0099ff;
+           --gradient-violet: #6a4cf5;
+           --gradient-magenta: #d44df0;
+           --gradient-orange: #ff7a3d;
+           --gradient-coral: #ff5577;
+           --success: #22c55e;
+         }
+
+         html { scroll-behavior: smooth; }
+
+         body {
+           background: var(--canvas);
+           color: var(--ink);
+           font-family: 'Inter', system-ui, sans-serif;
+           font-optical-sizing: auto;
+           font-feature-settings: 'cv01', 'cv05', 'cv09', 'cv11', 'ss03',
+     'ss07';
+           -webkit-font-smoothing: antialiased;
+           overflow-x: hidden;
+         }
+
+         /* ── Nav ── */
+         nav {
+           position: sticky;
+           top: 0;
+           z-index: 100;
+           height: 56px;
+           display: flex;
+           align-items: center;
+           justify-content: space-between;
+           padding: 0 30px;
+           background: var(--canvas);
+           border-bottom: 1px solid var(--hairline-soft);
+         }
+
+         .nav-logo {
+           font-size: 15px;
+           font-weight: 600;
+           letter-spacing: -0.3px;
+           color: var(--ink);
+           text-decoration: none;
+         }
+
+         .nav-actions { display: flex; gap: 8px; align-items: center; }
+
+         .btn-primary {
+           display: inline-flex;
+           align-items: center;
+           background: var(--ink);
+           color: #000;
+           font-family: inherit;
+           font-size: 14px;
+           font-weight: 500;
+           letter-spacing: -0.14px;
+           line-height: 1;
+           padding: 10px 15px;
+           border-radius: 100px;
+           border: none;
+           cursor: pointer;
+           text-decoration: none;
+           transition: opacity 0.15s;
+         }
+         .btn-primary:hover { opacity: 0.88; }
+
+         .btn-secondary {
+           display: inline-flex;
+           align-items: center;
+           background: var(--surface-1);
+           color: var(--ink);
+           font-family: inherit;
+           font-size: 14px;
+           font-weight: 500;
+           letter-spacing: -0.14px;
+           line-height: 1;
+           padding: 10px 15px;
+           border-radius: 100px;
+           border: none;
+           cursor: pointer;
+           text-decoration: none;
+           transition: background 0.15s;
+         }
+         .btn-secondary:hover { background: var(--surface-2); }
+
+         /* ── Hero ── */
+         .hero {
+           padding: 120px 30px 96px;
+           max-width: 900px;
+           margin: 0 auto;
+         }
+
+         .eyebrow {
+           display: inline-flex;
+           align-items: center;
+           gap: 6px;
+           background: var(--surface-1);
+           color: var(--ink-muted);
+           font-size: 13px;
+           font-weight: 500;
+           letter-spacing: -0.13px;
+           padding: 6px 12px;
+           border-radius: 100px;
+           margin-bottom: 32px;
+         }
+         .eyebrow-dot {
+           width: 6px;
+           height: 6px;
+           border-radius: 50%;
+           background: var(--success);
+         }
+
+         .hero-headline {
+           font-size: clamp(52px, 8vw, 85px);
+           font-weight: 650;
+           line-height: 0.95;
+           letter-spacing: clamp(-2.5px, -0.05em, -4.25px);
+           color: var(--ink);
+           margin-bottom: 28px;
+         }
+
+         .hero-sub {
+           font-size: 18px;
+           font-weight: 400;
+           line-height: 1.4;
+           letter-spacing: -0.18px;
+           color: var(--ink-muted);
+           max-width: 520px;
+           margin-bottom: 40px;
+         }
+
+         .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+         /* ── Section ── */
+         .section { padding: 96px 30px; }
+         .section-inner { max-width: 1100px; margin: 0 auto; }
+
+         .section-label {
+           font-size: 13px;
+           font-weight: 500;
+           letter-spacing: -0.13px;
+           color: var(--ink-muted);
+           margin-bottom: 20px;
+         }
+
+         .section-headline {
+           font-size: clamp(36px, 5vw, 62px);
+           font-weight: 650;
+           line-height: 1;
+           letter-spacing: clamp(-1.8px, -0.05em, -3.1px);
+           color: var(--ink);
+           margin-bottom: 16px;
+         }
+
+         .section-sub {
+           font-size: 18px;
+           font-weight: 400;
+           line-height: 1.4;
+           letter-spacing: -0.18px;
+           color: var(--ink-muted);
+           max-width: 480px;
+           margin-bottom: 48px;
+         }
+
+         /* ── Card Grid ── */
+         .card-grid {
+           display: grid;
+           grid-template-columns: repeat(2, 1fr);
+           gap: 12px;
+         }
+
+         @media (max-width: 680px) {
+           .card-grid { grid-template-columns: 1fr; }
+         }
+
+         .card {
+           background: var(--surface-1);
+           border-radius: 20px;
+           padding: 28px;
+         }
+
+         .card-title {
+           font-size: 22px;
+           font-weight: 700;
+           letter-spacing: -0.8px;
+           line-height: 1.2;
+           color: var(--ink);
+           margin-bottom: 10px;
+         }
+
+         .card-body {
+           font-size: 15px;
+           font-weight: 400;
+           line-height: 1.5;
+           letter-spacing: -0.15px;
+           color: var(--ink-muted);
+         }
+
+         /* gradient spotlight cards */
+         .card-violet {
+           background: linear-gradient(135deg, var(--gradient-violet) 0%,
+     #3a1fd4 100%);
+           border-radius: 30px;
+         }
+         .card-magenta {
+           background: linear-gradient(135deg, var(--gradient-magenta) 0%,
+     #9b20c8 100%);
+           border-radius: 30px;
+         }
+         .card-orange {
+           background: linear-gradient(135deg, var(--gradient-orange) 0%,
+     #e05a20 100%);
+           border-radius: 30px;
+         }
+         .card-coral {
+           background: linear-gradient(135deg, var(--gradient-coral) 0%,
+     #cc2244 100%);
+           border-radius: 30px;
+         }
+
+         .card-violet .card-body,
+         .card-magenta .card-body,
+         .card-orange .card-body,
+         .card-coral .card-body {
+           color: rgba(255,255,255,0.75);
+         }
+
+         /* ── Divider ── */
+         .divider {
+           border: none;
+           border-top: 1px solid var(--hairline-soft);
+           margin: 0;
+         }
+
+         /* ── Pricing ── */
+         .pricing-card {
+           background: var(--surface-1);
+           border-radius: 20px;
+           padding: 28px;
+           max-width: 400px;
+         }
+
+         .pricing-badge {
+           display: inline-block;
+           background: var(--surface-2);
+           color: var(--ink-muted);
+           font-size: 13px;
+           font-weight: 500;
+           letter-spacing: -0.13px;
+           padding: 5px 10px;
+           border-radius: 100px;
+           margin-bottom: 20px;
+         }
+
+         .price-amount {
+           font-size: 52px;
+           font-weight: 650;
+           letter-spacing: -2.5px;
+           line-height: 1;
+           color: var(--ink);
+         }
+
+         .price-period {
+           font-size: 15px;
+           font-weight: 400;
+           color: var(--ink-muted);
+           letter-spacing: -0.15px;
+           margin-left: 4px;
+         }
+
+         .price-sub {
+           font-size: 14px;
+           color: var(--ink-muted);
+           letter-spacing: -0.14px;
+           margin-top: 8px;
+           margin-bottom: 24px;
+         }
+
+         .feature-list {
+           list-style: none;
+           display: flex;
+           flex-direction: column;
+           gap: 12px;
+           margin-bottom: 28px;
+         }
+
+         .feature-list li {
+           display: flex;
+           align-items: flex-start;
+           gap: 10px;
+           font-size: 14px;
+           font-weight: 400;
+           letter-spacing: -0.14px;
+           color: var(--ink);
+           line-height: 1.4;
+         }
+
+         .check {
+           flex-shrink: 0;
+           width: 16px;
+           height: 16px;
+           margin-top: 1px;
+           color: var(--success);
+         }
+
+         /* ── Testimonial strip ── */
+         .testimonials {
+           display: grid;
+           grid-template-columns: repeat(3, 1fr);
+           gap: 12px;
+         }
+
+         @media (max-width: 768px) {
+           .testimonials { grid-template-columns: 1fr; }
+         }
+
+         .testimonial {
+           background: var(--surface-1);
+           border-radius: 15px;
+           padding: 20px;
+         }
+
+         .testimonial-text {
+           font-size: 15px;
+           font-weight: 400;
+           line-height: 1.5;
+           letter-spacing: -0.15px;
+           color: var(--ink);
+           margin-bottom: 16px;
+         }
+
+         .testimonial-author {
+           font-size: 13px;
+           font-weight: 500;
+           letter-spacing: -0.13px;
+           color: var(--ink-muted);
+         }
+
+         /* ── CTA band ── */
+         .cta-band {
+           padding: 96px 30px;
+           text-align: center;
+         }
+
+         .cta-band .section-headline {
+           margin-bottom: 20px;
+           margin-left: auto;
+           margin-right: auto;
+           max-width: 640px;
+         }
+
+         .cta-band .section-sub {
+           margin-left: auto;
+           margin-right: auto;
+           max-width: 440px;
+         }
+
+         /* ── Footer ── */
+         footer {
+           border-top: 1px solid var(--hairline-soft);
+           padding: 40px 30px;
+           display: flex;
+           align-items: center;
+           justify-content: space-between;
+           flex-wrap: wrap;
+           gap: 12px;
+         }
+
+         .footer-logo {
+           font-size: 14px;
+           font-weight: 600;
+           letter-spacing: -0.2px;
+           color: var(--ink);
+         }
+
+         .footer-meta {
+           font-size: 13px;
+           font-weight: 400;
+           letter-spacing: -0.13px;
+           color: var(--ink-muted);
+         }
+
+         .footer-link {
+           color: var(--ink-muted);
+           text-decoration: none;
+         }
+         .footer-link:hover { color: var(--ink); }
+
+         /* ── Responsive ── */
+         @media (max-width: 600px) {
+           nav { padding: 0 20px; }
+           .hero { padding: 80px 20px 64px; }
+           .section { padding: 64px 20px; }
+           .cta-band { padding: 64px 20px; }
+           footer { padding: 32px 20px; }
+         }
+       </style>
+     </head>
+     <body>
+
+       <!-- Nav -->
+       <nav>
+         <a href="/" class="nav-logo">CurbCopy</a>
+         <div class="nav-actions">
+           <a href="https://curbcopy-production.up.railway.app/login" 
+     class="btn-secondary">Sign in</a>
+           <a href="https://curbcopy-production.up.railway.app/signup" 
+     class="btn-primary">Get started free</a>
+         </div>
+       </nav>
+
+       <!-- Hero -->
+       <section class="hero">
+         <div class="eyebrow">
+           <span class="eyebrow-dot"></span>
+           AI-powered copy for real estate
+         </div>
+         <h1 class="hero-headline">Stop writing.<br>Start closing.</h1>
+         <p class="hero-sub">CurbCopy turns your property notes into
+     polished listing descriptions, social posts, follow-up emails, and
+     open house invites — in seconds.</p>
+         <div class="hero-actions">
+           <a href="https://curbcopy-production.up.railway.app/signup" 
+     class="btn-primary">Start free trial →</a>
+           <a href="#pricing" class="btn-secondary">See pricing</a>
+         </div>
+       </section>
+
+       <hr class="divider" />
+
+       <!-- Features -->
+       <section class="section">
+         <div class="section-inner">
+           <p class="section-label">Four tools, one subscription</p>
+           <h2 class="section-headline">Everything you need<br>to win the
+     listing.</h2>
+           <p class="section-sub">Built for agents who'd rather be at the
+     showing than at the keyboard.</p>
+
+           <div class="card-grid">
+
+             <!-- Gradient spotlight: violet -->
+             <div class="card card-violet">
+               <h3 class="card-title">Listing Descriptions</h3>
+               <p class="card-body">Paste in the bedrooms, bathrooms, and
+     highlights. Get MLS-ready copy that sells the lifestyle — not just the
+      square footage.</p>
+             </div>
+
+             <!-- Dark card -->
+             <div class="card">
+               <h3 class="card-title">Social Posts</h3>
+               <p class="card-body">Instagram captions, Facebook posts, and
+      Twitter-ready hooks generated from your listing details. One click,
+     ready to post.</p>
+             </div>
+
+             <!-- Dark card -->
+             <div class="card">
+               <h3 class="card-title">Follow-Up Emails</h3>
+               <p class="card-body">Personalized buyer and seller
+     follow-ups that feel handwritten, not templated. Keep deals moving
+     without drafting from scratch.</p>
+             </div>
+
+             <!-- Gradient spotlight: orange -->
+             <div class="card card-orange">
+               <h3 class="card-title">Open House Invites</h3>
+               <p class="card-body">Professional invitations that drive
+     foot traffic. Drop in the details and CurbCopy writes an invite worth
+     forwarding.</p>
+             </div>
+
+           </div>
+         </div>
+       </section>
+
+       <hr class="divider" />
+
+       <!-- Social proof -->
+       <section class="section">
+         <div class="section-inner">
+           <p class="section-label">Early access agents</p>
+           <h2 class="section-headline">Agents are saving<br>hours every
+     week.</h2>
+
+           <div class="testimonials">
+             <div class="testimonial">
+               <p class="testimonial-text">"I used to spend 30–45 minutes
+     on every listing description. CurbCopy cuts that to under five. My
+     clients think I hired a copywriter."</p>
+               <p class="testimonial-author">Sarah M. — RE/MAX agent,
+     Phoenix AZ</p>
+             </div>
+             <div class="testimonial">
+               <p class="testimonial-text">"The follow-up email tool alone
+     is worth it. I close faster because I actually stay in touch between
+     showings."</p>
+               <p class="testimonial-author">David K. — Independent broker,
+      Austin TX</p>
+             </div>
+             <div class="testimonial">
+               <p class="testimonial-text">"My social posts used to be an
+     afterthought. Now they're the best content in my feed — and I spend
+     zero time on them."</p>
+               <p class="testimonial-author">Priya R. — Keller Williams,
+     Chicago IL</p>
+             </div>
+           </div>
+         </div>
+       </section>
+
+       <hr class="divider" />
+
+       <!-- Pricing -->
+       <section class="section" id="pricing">
+         <div class="section-inner">
+           <p class="section-label">Simple pricing</p>
+           <h2 class="section-headline">One plan.<br>Everything
+     included.</h2>
+
+           <div class="pricing-card">
+             <span class="pricing-badge">7-day free trial</span>
+             <div>
+               <span class="price-amount">$29</span>
+               <span class="price-period">/ month</span>
+             </div>
+             <p class="price-sub">Cancel anytime. No credit card required
+     to start.</p>
+
+             <ul class="feature-list">
+               <li>
+                 <svg class="check" viewBox="0 0 16 16" fill="none">
+                   <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" 
+     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                 </svg>
+                 Unlimited listing descriptions
+               </li>
+               <li>
+                 <svg class="check" viewBox="0 0 16 16" fill="none">
+                   <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" 
+     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                 </svg>
+                 Unlimited social posts
+               </li>
+               <li>
+                 <svg class="check" viewBox="0 0 16 16" fill="none">
+                   <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" 
+     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                 </svg>
+                 Unlimited follow-up emails
+               </li>
+               <li>
+                 <svg class="check" viewBox="0 0 16 16" fill="none">
+                   <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" 
+     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                 </svg>
+                 Unlimited open house invites
+               </li>
+               <li>
+                 <svg class="check" viewBox="0 0 16 16" fill="none">
+                   <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" 
+     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                 </svg>
+                 Powered by Claude AI
+               </li>
+               <li>
+                 <svg class="check" viewBox="0 0 16 16" fill="none">
+                   <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" 
+     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                 </svg>
+                 Copy history saved to your account
+               </li>
+             </ul>
+
+             <a href="https://curbcopy-production.up.railway.app/signup" 
+     class="btn-primary" 
+     style="width:100%;justify-content:center;font-size:15px;padding:12px
+     20px;">
+               Start your free trial
+             </a>
+           </div>
+         </div>
+       </section>
+
+       <hr class="divider" />
+
+       <!-- CTA band -->
+       <div class="cta-band">
+         <h2 class="section-headline">Your next listing<br>writes
+     itself.</h2>
+         <p class="section-sub">Join agents already saving hours every week
+      with AI copy that actually sounds like them.</p>
+         <a href="https://curbcopy-production.up.railway.app/signup" 
+     class="btn-primary" style="font-size:15px;padding:12px 22px;">
+           Get started free →
+         </a>
+       </div>
+
+       <!-- Footer -->
+       <footer>
+         <span class="footer-logo">CurbCopy</span>
+         <span class="footer-meta">
+           &copy; 2026 CurbCopy &mdash;
+           <a href="mailto:hello@curbcopy.co" 
+     class="footer-link">hello@curbcopy.co</a>
+         </span>
+       </footer>
+
+     </body>
+     </html>
