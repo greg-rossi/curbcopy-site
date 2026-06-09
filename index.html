@@ -187,22 +187,17 @@
 
     .demo-photo {
       height: 148px;
-      background: linear-gradient(135deg, #6a4cf5 0%, #3a1fd4 100%);
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
     }
 
-    .demo-photo::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 55%, rgba(0,0,0,0.3) 100%);
+    .demo-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
     }
-
-    .demo-house-svg { opacity: 0.18; }
 
     .demo-photo-tag {
       position: absolute;
@@ -211,7 +206,7 @@
       background: rgba(0,0,0,0.4);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.92);
       font-size: 11px;
       font-weight: 500;
       letter-spacing: -0.11px;
@@ -485,12 +480,7 @@
       <div class="hero-visual">
         <div class="demo-card">
           <div class="demo-photo">
-            <svg class="demo-house-svg" width="120" height="96" viewBox="0 0 120 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M60 8L8 44V92H44V64H76V92H112V44L60 8Z" stroke="white" stroke-width="3.5" stroke-linejoin="round"/>
-              <path d="M48 92V72C48 69.8 49.8 68 52 68H68C70.2 68 72 69.8 72 72V92" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
-              <rect x="34" y="54" width="14" height="14" rx="2" stroke="white" stroke-width="3"/>
-              <rect x="72" y="54" width="14" height="14" rx="2" stroke="white" stroke-width="3"/>
-            </svg>
+            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=720&q=80&auto=format&fit=crop" alt="Modern house exterior" />
             <span class="demo-photo-tag">24 Maple Street · Listed today</span>
           </div>
           <div class="demo-body">
@@ -668,7 +658,7 @@
 
   <!-- Footer -->
   <footer>
-    <img src="cc_logo_transparent.png" alt="CurbCopy" style="height:42px;width:auto;display:block;" />
+    <img src="cc_logo_transparent.png" alt="CurbCopy" style="height:22px;width:auto;display:block;" />
     <span class="footer-meta">
       &copy; 2026 CurbCopy &mdash;
       <a href="mailto:hello@curbcopy.co" class="footer-link">hello@curbcopy.co</a>
