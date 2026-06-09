@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CurbCopy — AI Copy for Real Estate Agents</title>
   <meta name="description" content="Stop staring at a blank screen. CurbCopy writes your listing descriptions, social posts, follow-up emails, and open house invites in seconds." />
+  <link rel="icon" type="image/png" href="cc_favicon_transparent.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
@@ -44,7 +45,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      height: 56px;
+      height: 96px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -436,6 +437,11 @@
     .footer-link { color: var(--ink-muted); text-decoration: none; }
     .footer-link:hover { color: var(--ink); }
 
+    @media (max-width: 860px) {
+      .voice-grid { grid-template-columns: 1fr !important; }
+      .voice-grid > div:last-child { display: none; }
+    }
+
     /* ── Responsive ── */
     @media (max-width: 600px) {
       nav { padding: 0 20px; }
@@ -529,6 +535,65 @@
           <h3 class="card-title">Open House Invites</h3>
           <p class="card-body">Professional invitations that drive foot traffic. Drop in the details and CurbCopy writes an invite worth forwarding.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- Voice section -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="voice-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;">
+
+        <div>
+          <p class="section-label">Your writing style</p>
+          <h2 class="section-headline">Sounds like you.<br>Not like AI.</h2>
+          <p class="section-sub" style="margin-bottom:24px;">
+            Paste a few examples of your own writing and CurbCopy learns your voice — your vocabulary, your rhythm, the way you close a sentence. Every generation matches your style from that point on.
+          </p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#999;letter-spacing:-0.14px;line-height:1.5;">
+              <svg style="width:16px;height:16px;margin-top:1px;color:#00c896;flex-shrink:0;" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Paste 2–3 samples of your real writing — listings, emails, social posts
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#999;letter-spacing:-0.14px;line-height:1.5;">
+              <svg style="width:16px;height:16px;margin-top:1px;color:#00c896;flex-shrink:0;" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              CurbCopy matches your tone, vocabulary, and sentence rhythm
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#999;letter-spacing:-0.14px;line-height:1.5;">
+              <svg style="width:16px;height:16px;margin-top:1px;color:#00c896;flex-shrink:0;" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Works across all four tools — no setup per tool required
+            </li>
+          </ul>
+          <a href="https://app.curbcopy.co/signup" class="btn-primary" style="font-size:14px;">Try it free →</a>
+        </div>
+
+        <!-- Voice UI mockup -->
+        <div style="display:flex;justify-content:center;">
+          <div style="width:100%;max-width:360px;background:#141414;border:1px solid #262626;border-radius:20px;padding:24px;box-shadow:0 40px 80px rgba(0,0,0,0.5);">
+            <div style="margin-bottom:16px;">
+              <p style="font-size:13px;font-weight:600;color:#fff;letter-spacing:-0.13px;margin-bottom:4px;">My Voice</p>
+              <p style="font-size:12px;color:#555;letter-spacing:-0.12px;line-height:1.5;">Paste examples of your writing and we'll match your style.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="background:#1a1a1a;border:1px solid #262626;border-radius:10px;padding:12px;">
+                <p style="font-size:11px;font-weight:500;color:#555;letter-spacing:-0.11px;margin-bottom:6px;">Sample 1</p>
+                <p style="font-size:12.5px;color:#d0d0d0;line-height:1.6;letter-spacing:-0.12px;">"Corner lot on a quiet street — the kind of block where neighbors actually wave. Updated kitchen, original hardwood floors that survived three owners. Ten minutes to downtown without touching the highway."</p>
+              </div>
+              <div style="background:#1a1a1a;border:1px solid #262626;border-radius:10px;padding:12px;">
+                <p style="font-size:11px;font-weight:500;color:#555;letter-spacing:-0.11px;margin-bottom:6px;">Sample 2</p>
+                <p style="font-size:12.5px;color:#555;line-height:1.6;letter-spacing:-0.12px;">Add another example…</p>
+              </div>
+            </div>
+            <div style="margin-top:14px;">
+              <div style="display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;background:#00c896;border-radius:100px;">
+                <span style="font-size:13px;font-weight:500;color:#000;letter-spacing:-0.13px;">Save writing style</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
